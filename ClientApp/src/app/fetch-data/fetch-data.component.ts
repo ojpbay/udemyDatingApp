@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { MatSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
@@ -11,7 +13,7 @@ export class FetchDataComponent implements OnInit {
   }
   public forecasts: WeatherForecast[];
 
-  constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string) {
+  constructor(private _http: HttpClient, @Inject('BASE_URL') private _baseUrl: string, private _snackBar: MatSnackBar) {
     
   }
 
@@ -20,7 +22,11 @@ export class FetchDataComponent implements OnInit {
   getWeatherForecasts() {
     this._http.get<WeatherForecast[]>(this._baseUrl + 'api/SampleData').subscribe(result => {
       this.forecasts = result;
-    }, error => console.error(error));
+    }, error => {
+      this._snackBar.open(error, null, {
+        duration: 3000
+      })
+    })
   }
 }
 

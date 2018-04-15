@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using udemyDatingApp.Data;
 using udemyDatingApp.Models;
 
-namespace udemyDatingApp.Data
+namespace udemyDatingApp.Helpers
 {
-    public static class SeedExtension
+    public static class Extensions
     {
         public static IWebHost SeedData(this IWebHost host)
         {
@@ -22,7 +22,16 @@ namespace udemyDatingApp.Data
             return host;
         }
 
-        public static void SeedDatabase(DataContext context)
+        public static void AddApplicationError(this HttpResponse response, string message)
+        {
+            response.Headers.Add("Application-Error", message);
+
+            // these probably aren't necessary
+            response.Headers.Add("Access-Control-Expose-Headers", "Application-Error");
+            response.Headers.Add("Access-Control-Allow-Origin", "*");
+        }
+
+        private static void SeedDatabase(DataContext context)
         {
             if (!context.WeatherForecasts.Any())
             {
