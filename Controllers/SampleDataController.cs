@@ -17,10 +17,12 @@ namespace udemyDatingApp.Controllers
             this._dataContext = dataContext;
         }       
 
-        [HttpGet("[action]")]
-        public IEnumerable<WeatherForecast> WeatherForecasts()
+        [HttpGet]
+        public IActionResult GetWeatherForecasts()
         {
-            return _dataContext.WeatherForecasts.ToArray();
+            var forecasts = _dataContext.WeatherForecasts.ToList();
+
+            return Ok(forecasts);
         }
 
         
