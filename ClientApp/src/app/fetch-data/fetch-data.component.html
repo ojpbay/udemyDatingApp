@@ -28,22 +28,3 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-
-  <table class='table' *ngIf="forecasts">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Temperature (C)</th>
-        <th>Temperature (F)</th>
-        <th>Summary</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let forecast of forecasts">
-        <td>{{ forecast.dateFormatted }}</td>
-        <td>{{ forecast.temperatureC }}</td>
-        <td>{{ forecast.temperatureF }}</td>
-        <td>{{ forecast.summary }}</td>
-      </tr>
-    </tbody>
-  </table>
