@@ -28,6 +28,11 @@ namespace udemyDatingApp.Controllers
         {
             var forecast = await this._forecastRepository.GetWeatherForecast(id);
 
+            if (forecast == null)
+            {
+                return NotFound();
+            }
+
             return Ok(forecast);
         }
         

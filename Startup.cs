@@ -26,6 +26,7 @@ namespace udemyDatingApp
         {
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IWeatherForecastRepository, WeatherForecastRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddMvc();
 
             // In production, the Angular files will be served from this directory
