@@ -16,6 +16,11 @@ namespace udemyDatingApp.Data
             this._dataContext = dataContext;
         }
 
+        public async Task<WeatherForecast> GetWeatherForecast(int id)
+        {
+            return await this._dataContext.WeatherForecasts.FirstOrDefaultAsync(w => w.Id == id);
+        }
+
         public async Task<IEnumerable<WeatherForecast>> GetWeatherForecasts()
         {
             return await this._dataContext.WeatherForecasts.ToListAsync();

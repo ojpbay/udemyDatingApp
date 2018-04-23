@@ -10,7 +10,7 @@ namespace udemyDatingApp.Controllers
     {
         private readonly IWeatherForecastRepository _forecastRepository;
 
-        public SampleDataController(DataContext dataContext, IWeatherForecastRepository forecastRepository)
+        public SampleDataController(IWeatherForecastRepository forecastRepository)
         {
             this._forecastRepository = forecastRepository;
         }
@@ -23,6 +23,13 @@ namespace udemyDatingApp.Controllers
             return Ok(forecasts);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetWeatherForecast(int id)
+        {
+            var forecast = await this._forecastRepository.GetWeatherForecast(id);
+
+            return Ok(forecast);
+        }
         
     }
 }

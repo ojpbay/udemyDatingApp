@@ -7,5 +7,7 @@ namespace udemyDatingApp.Data
     public interface IWeatherForecastRepository
     {
         Task<IEnumerable<WeatherForecast>> GetWeatherForecasts();
+
+        Task<WeatherForecast> GetWeatherForecast(int id);
     }
 }
