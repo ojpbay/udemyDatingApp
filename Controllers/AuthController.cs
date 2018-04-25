@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using udemyDatingApp.Data;
 using udemyDatingApp.Dtos;
@@ -17,10 +18,12 @@ namespace udemyDatingApp.Controllers
     public class AuthController : Controller
     {
         private readonly IAuthRepository _repo;
+        private readonly IConfiguration _configuration;
 
-        public AuthController(IAuthRepository repo)
+        public AuthController(IAuthRepository repo, IConfiguration configuration)
         {
             this._repo = repo;
+            this._configuration = configuration;
         }
 
         [HttpPost("register")]
@@ -62,9 +65,16 @@ namespace udemyDatingApp.Controllers
                 return Unauthorized();
             }
 
+            string tokenString = GenerateToken(userFromRepo);
+
+            return Ok(new { tokenString });
+        }
+
+        private string GenerateToken(User userFromRepo)
+        {
             // generate token
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("super secret key");
+            var key = Encoding.ASCII.GetBytes(this._configuration.GetSection("AppSettings:Token").Value);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -78,8 +88,7 @@ namespace udemyDatingApp.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
-
-            return Ok(new { tokenString });
+            return tokenString;
         }
     }
 }
