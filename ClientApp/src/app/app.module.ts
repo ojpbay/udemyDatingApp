@@ -18,6 +18,8 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NavComponent } from './nav/nav.component';
 
+import { AuthService } from './_services/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +41,12 @@ import { NavComponent } from './nav/nav.component';
     ]),
     MatTableModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule 
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
