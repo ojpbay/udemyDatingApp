@@ -19,6 +19,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AuthService } from './_services/auth.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { AuthService } from './_services/auth.service';
     CounterComponent,
     FetchDataComponent,
     NavComponent
-  ],
+,
+    RegisterComponent
+],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BrowserAnimationsModule,
@@ -42,7 +45,7 @@ import { AuthService } from './_services/auth.service';
     MatTableModule,
     MatSidenavModule,
     MatSnackBarModule,
-    FormsModule 
+    FormsModule
   ],
   providers: [
     AuthService

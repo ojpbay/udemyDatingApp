@@ -5,7 +5,8 @@ using udemyDatingApp.Data;
 
 namespace udemyDatingApp.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {

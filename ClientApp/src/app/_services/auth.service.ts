@@ -19,7 +19,6 @@ export class AuthService {
 
     return this.http.post<any>(this.baseUrl + 'login', model, httpOptions)
       .map((response) => {
-        debugger;
           const user = response;
           if (user) {
             localStorage.setItem('token', user.tokenString);
