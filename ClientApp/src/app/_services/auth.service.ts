@@ -11,13 +11,7 @@ export class AuthService {
 
   login(model: any) {
     
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-
-    return this.http.post<any>(this.baseUrl + 'login', model, httpOptions)
+    return this.http.post<any>(this.baseUrl + 'login', model, this.generateOptions())
       .map((response) => {
           const user = response;
           if (user) {
@@ -25,5 +19,17 @@ export class AuthService {
             this.userToken = user.tokenString;
           }
       })
+  }
+
+  register(model: any) {
+    return this.http.post(this.baseUrl + 'register', model, this.generateOptions());
+  }
+
+  private generateOptions() {
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
   }
 }

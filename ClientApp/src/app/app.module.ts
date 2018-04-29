@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AuthService } from './_services/auth.service';
@@ -27,7 +26,6 @@ import { RegisterComponent } from './register/register.component';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent,
     NavComponent
 ,
     RegisterComponent
@@ -39,8 +37,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'counter', component: CounterComponent }
     ]),
     MatTableModule,
     MatSidenavModule,

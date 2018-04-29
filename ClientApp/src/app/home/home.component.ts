@@ -13,21 +13,10 @@ export class HomeComponent implements OnInit {
   constructor(private _http: HttpClient, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.getWeatherForecasts();
   }
 
   registerToggle() {
     this.registerMode = true;
-  }
-
-  getWeatherForecasts() {
-    this._http.get<WeatherForecast[]>('http://localhost:2903/api/SampleData').subscribe(result => {
-      this.forecasts = result;
-    }, error => {
-      this._snackBar.open(error, null, {
-        duration: 3000
-      });
-    });
   }
 
   cancelRegisterMode(registerMode: boolean) {
