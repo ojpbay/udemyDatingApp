@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWeatherForecasts();
-   }
+  }
 
   registerToggle() {
-    this.registerMode = !this.registerMode;
+    this.registerMode = true;
   }
 
   getWeatherForecasts() {
@@ -29,7 +29,12 @@ export class HomeComponent implements OnInit {
       });
     });
   }
+
+  cancelRegisterMode(registerMode: boolean) {
+    this.registerMode = registerMode;
+  }
 }
+
   interface WeatherForecast {
   dateFormatted: string;
   temperatureC: number;
