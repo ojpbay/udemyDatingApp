@@ -29,7 +29,10 @@ namespace udemyDatingApp.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]UserForRegisterDto userToRegister)
         {
-            userToRegister.Username = userToRegister.Username.ToLower();
+            if (!string.IsNullOrWhiteSpace(userToRegister.Username))
+            {
+                userToRegister.Username = userToRegister.Username.ToLower();
+            }
 
             if (!string.IsNullOrWhiteSpace(userToRegister.Username))
             {
